@@ -1,0 +1,20 @@
+<div class="container">
+  <ol class="ol-pokemon">
+    <li class="li-pokemon" *ngFor="let pokemon of pokemons">
+      <p-pokemon [picture]="pokemon.picture" [name]="pokemon.name"></p-pokemon>
+      {{ pokemon.name }}
+      <ol class="ol-types">
+        <li>Types:</li>
+        <li class="li-types" *ngFor="let item of pokemon.types">
+          {{ item }}
+        </li>
+      </ol>
+      <ol class="ol-weaknesses">
+        <li>Weaknesses:</li>
+        <li class="li-weaknesses" *ngFor="let item of pokemon.weaknesses">
+          {{ item }}
+        </li>
+      </ol>
+    </li>
+  </ol>
+</div>

@@ -1,0 +1,7 @@
+dependencias instaladas:
+express,
+body-parser,
+mongoDB,
+mongoose,
+mongoose-paginate,
+cors.

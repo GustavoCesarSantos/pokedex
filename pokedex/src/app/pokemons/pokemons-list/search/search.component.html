@@ -1,0 +1,5 @@
+<div class="search">
+  <form class="form-search">
+    <input type="search" placeholder="search..." autofocus [value]='textSearch' (keyup)='debounce.next($event.target.value)'>
+  </form>
+</div>

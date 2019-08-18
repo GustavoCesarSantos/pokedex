@@ -1,0 +1,10 @@
+.search-in-api {
+  margin: .5em 0 .5em 0;
+}
+
+.form-search-in-api{
+  display: flex;
+  justify-content: center;
+  
+  width: 100%;
+}

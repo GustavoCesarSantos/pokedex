@@ -1,0 +1,43 @@
+.container{
+  display: flex;
+  justify-content: center;
+}
+
+ol{
+  display: flex;
+  flex-wrap: wrap;
+  
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.ol-pokemon{
+  justify-content: center;
+
+  font-size: 12px;
+}
+
+.ol-types, .ol-weaknesses{
+  
+  align-items: baseline;
+
+  margin-top: 18px;
+}
+
+.li-pokemon{
+  display: flex;
+  flex-direction: column;
+
+  width: 29%;
+  padding: 20px;
+
+  border: .5em ridge rgba(149, 175, 192, .9);
+  background-color: black;
+}
+
+.li-types, .li-weaknesses{
+  margin: 10px 10px 0px 10px;
+}
