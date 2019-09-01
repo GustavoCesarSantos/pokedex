@@ -1,43 +1,56 @@
-<form [formGroup]="createPokemonForm">
+<section>
 
-  <div>
+  <form [formGroup]="createPokemonForm">
+  
+    <div>
+      
+      <small *ngIf="createPokemonForm.get('picture').errors?.required"> Picture is required </small>
+
+      <input  formControlName='picture' placeholder="insert a picture" autofocus>
+      
+    </div>
+  
+    <div>
     
-    <input  formControlName='picture' placeholder="insert a picture" autofocus>
+      <small *ngIf="createPokemonForm.get('name').errors?.required"> Name is required </small>
+
+      <small *ngIf="createPokemonForm.get('name').errors?.nameAlreadyExist"> THIS POKEMON ALREADY EXIST </small>
+      <small *ngIf="createPokemonForm.get('name').valid"> OK </small>
+
+      <input formControlName='name' placeholder="insert pokemon name">
+      
+    </div>
+  
+    <div #typesPokemons class='types-pokemons'>
+      
+      <small *ngIf="createPokemonForm.get('types').errors?.required"> Types is required </small>
+      
+      <small *ngIf="createPokemonForm.get('types').errors?.typeNotExist"> THIS TYPE NOT EXIST </small>
+      <small *ngIf="createPokemonForm.get('types').valid"> OK </small>
+      
+      <input  formControlName='types' class="types-pokemon" placeholder="insert pokemon types">
+      <button (click)='addNewInputTypes()'> + </button>
+      
+      <ul #addedTypes class="ul-types-pokemon"></ul>
+      
+    </div>
     
-    <small *ngIf="createPokemonForm.get('picture').errors?.required"> Picture is required </small>
+    <div #weaknessesPokemons class='weaknesses-pokemons'>
+      
+      <small *ngIf="createPokemonForm.get('weaknesses').errors?.required"> Weaknesses is required </small>
 
-  </div>
+      <small *ngIf="createPokemonForm.get('weaknesses').errors?.typeNotExist"> THIS TYPE NOT EXIST </small>
+      <small *ngIf="createPokemonForm.get('weaknesses').valid"> OK </small>
 
-  <div>
+      <input  formControlName='weaknesses' class="weaknesses-pokemon" placeholder="insert pokemon weaknesses">
+      <button (click)='addNewInputWeaknesses()'> + </button>
+
+      <ul #addedWeaknesses class="ul-weaknesses-pokemon"></ul>
   
-    <input formControlName='name' placeholder="insert pokemon name">
+    </div>
+
+    <button [disabled]='createPokemonForm.invalid' (click)='createPokemon()'>Create</button>
     
-    <small *ngIf="createPokemonForm.get('name').errors?.required"> Name is required </small>
+  </form>
 
-    <small *ngIf="createPokemonForm.get('name').errors?.nameAlreadyExist"> THIS POKEMON ALREADY EXIST </small>
-    <small *ngIf="createPokemonForm.get('name').valid"> OK </small>
-
-  </div>
-
-  <div #typesPokemons class='types-pokemons'>
-    
-    <input  formControlName='types' class="types-pokemon" placeholder="insert pokemon types">
-
-    <small *ngIf="createPokemonForm.get('types').errors?.required"> Types is required </small>
-  
-  </div>
-  <button (click)='addNewInputTypes()'> + </button>
-  
-
-  <div #weaknessesPokemons class='weaknesses-pokemons'>
-    
-    <input  formControlName='weaknesses' class="weaknesses-pokemon" placeholder="insert pokemon weaknesses">
-
-    <small *ngIf="createPokemonForm.get('weaknesses').errors?.required"> Weaknesses is required </small>
-  
-  </div>
-  <button (click)='addNewInputWeaknesses()'> + </button>
-  
-  <button (click)='createPokemon()'>Create</button>
-  
-</form>
+</section>

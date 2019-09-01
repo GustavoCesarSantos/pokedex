@@ -2,6 +2,8 @@ const PokemonService = require('./PokemonService');
 const Pokemon = require('./Pokemon');
 const messages = require('../../helpers/constant/messages');
 
+const TypeService = require('../type/TypeService');
+
 const pokemonService = new PokemonService();
 
 module.exports = class PokemonController{
@@ -27,8 +29,16 @@ module.exports = class PokemonController{
 
   static async setPokemon(req,res){
     try{
+
       const pokemon = new Pokemon(req.body);
-      if(pokemon.isValid){
+      
+      const typeService = new TypeService();
+      const objectTypes = await typeService.getTypes();
+      const arrayTypes = [];
+      objectTypes.docs.map( type => arrayTypes.push(type.name));
+      const isValid = pokemon.isValid(arrayTypes);
+
+      if(isValid){
         await pokemonService.setPokemon(pokemon);
         res.status(201).json(messages.POKEMON_CREATED);
       }else{

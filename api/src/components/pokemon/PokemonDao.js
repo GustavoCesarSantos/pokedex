@@ -1,7 +1,7 @@
 const Pokemons = require('../../database/models/Pokemons');
 
 module.exports = class PokemonDao{
-  async getPokemons(pageNumber){
+  async getPokemons(pageNumber = 1){
     const pokemons = await Pokemons.paginate({}, { page: pageNumber, limit: 12 });
     return pokemons;
   };

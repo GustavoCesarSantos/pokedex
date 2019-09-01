@@ -19,7 +19,6 @@ export class PokemonsListComponent implements OnInit {
 
   ngOnInit():void {
     this.pokemons = this._activatedRoute.snapshot.data.pokemons;
-    console.log(this.pokemons);
   };
   
   nextPage(){ 

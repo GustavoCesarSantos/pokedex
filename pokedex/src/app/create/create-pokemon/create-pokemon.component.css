@@ -1,0 +1,15 @@
+section, form, div{
+  display: flex;
+  flex-direction: column;
+}
+section{ 
+  align-items: center;
+}
+
+form{
+  align-items: center;
+  
+  margin: .2em;
+
+  width: 30%;
+}

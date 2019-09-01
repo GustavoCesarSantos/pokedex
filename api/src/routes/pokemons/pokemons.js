@@ -6,7 +6,7 @@ module.exports = (app) => {
     .get(PokemonController.getPokemons)
     .post(PokemonController.setPokemon);
 
-    app.route(urls.POKEMON_NAME)
+  app.route(urls.POKEMON_NAME)
     .get(PokemonController.getPokemon)
     .delete(PokemonController.removePokemon)
     .put(PokemonController.updatePokemon);
