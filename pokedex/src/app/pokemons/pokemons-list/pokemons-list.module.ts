@@ -6,7 +6,6 @@ import { NextButtonComponent } from './next-previous-button/next-button/next-but
 import { PreviousButtonComponent } from './next-previous-button/previous-button/previous-button.component';
 import { PokemonsComponent } from './pokemons/pokemons.component';
 import { SearchComponent } from './search/search.component';
-import { SearchInApiComponent } from './search-in-api/search-in-api.component';
 import { FindByNamePipe } from './find-by-name.pipe';
 import { PokemonModule } from '../pokemon/pokemon.module';
 
@@ -18,7 +17,6 @@ import { PokemonModule } from '../pokemon/pokemon.module';
     PreviousButtonComponent,
     PokemonsComponent,
     SearchComponent,
-    SearchInApiComponent,
     FindByNamePipe,
   ],
   imports: [

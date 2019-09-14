@@ -1,5 +1,4 @@
 <p-search  [textSearch]="filter" (onSearch)="filter = $event" ></p-search>
-<p-search-in-api [currentPage]="pokemons.page" (onClickSearch)="pokemons.docs = $event" (onClickBack)="pokemons = $event"></p-search-in-api>
 
 <p-pokemons [pokemons]="pokemons.docs | findByName: filter "></p-pokemons>
 

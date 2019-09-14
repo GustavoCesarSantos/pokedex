@@ -14,7 +14,6 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void{
     this.debounce.pipe(debounceTime(400)).subscribe(filter => {
-      console.log(filter);
       this.onSearch.emit(filter)
     });
   };
