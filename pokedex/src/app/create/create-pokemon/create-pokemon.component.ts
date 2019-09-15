@@ -57,7 +57,7 @@ export class CreatePokemonComponent implements OnInit{
   };
 
   addValue(typeToMessage: string, divToAppend: ElementRef<HTMLDivElement>, classNameForQuery: string, arrayOfAddedValues: string[], ulToAppend: ElementRef<HTMLUListElement>){
-    const response = confirm(`Deseja realmente adicionar mais um(a) ${typeToMessage} neste pokemon ?`);
+    const response = confirm(`Deseja realmente adicionar um(a) ${typeToMessage} neste pokemon ?`);
     if(response){
       ulToAppend.nativeElement.innerHTML = '';
   
