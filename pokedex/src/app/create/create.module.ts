@@ -4,6 +4,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { CreatePokemonComponent } from './create-pokemon/create-pokemon.component';
+import { CreateRoutingModule } from './create.routing.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { CreatePokemonComponent } from './create-pokemon/create-pokemon.componen
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    CreateRoutingModule
   ]
 })
 export class CreateModule { }

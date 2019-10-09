@@ -82,6 +82,10 @@ export class CreatePokemonComponent implements OnInit{
     this.addValue('Weaknesse', this.divWeaknesses, 'weaknesses-pokemon', this.arrayOfAddedWeaknesses, this.ulWeaknesses);
   };
 
+  goToHome(){
+    this._router.navigate(['']);
+  };
+
   createPokemon(){
     const pokemon = this.createPokemonForm.getRawValue() as Pokemon;
     const arrayTypes: string[] = [];
@@ -98,7 +102,7 @@ export class CreatePokemonComponent implements OnInit{
     console.log(pokemon)
     this._createPokemonService.createPokemon(pokemon).subscribe(
       () => {
-        this._router.navigate([''])
+        this.goToHome();
       },
       err => {
         console.log(err.error);
