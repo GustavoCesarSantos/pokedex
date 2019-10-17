@@ -9,7 +9,8 @@ import { Pokemon } from 'src/app/pokemons/pokemon/pokemon';
 
 @Component({
   templateUrl: './create-pokemon.component.html',
-  styleUrls: ['./create-pokemon.component.css']
+  styleUrls: ['./create-pokemon.component.css'],
+  providers: [ CreatePokemonService, NameValidatorService, TypeValidatorService ]
 })
 export class CreatePokemonComponent implements OnInit{
   createPokemonForm : FormGroup;

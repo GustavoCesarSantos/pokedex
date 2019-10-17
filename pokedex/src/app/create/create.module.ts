@@ -5,6 +5,9 @@ import { RouterModule } from '@angular/router';
 
 import { CreatePokemonComponent } from './create-pokemon/create-pokemon.component';
 import { CreateRoutingModule } from './create.routing.module';
+import { CreatePokemonService } from './create-pokemon/create-pokemon.service';
+import { NameValidatorService } from './create-pokemon/name.validator.service';
+import { TypeValidatorService } from './create-pokemon/type.validator.service';
 
 @NgModule({
   declarations: [
@@ -19,6 +22,11 @@ import { CreateRoutingModule } from './create.routing.module';
     ReactiveFormsModule,
     RouterModule,
     CreateRoutingModule
+  ],
+  providers: [
+    CreatePokemonService,
+    NameValidatorService,
+    TypeValidatorService
   ]
 })
 export class CreateModule { }

@@ -4,7 +4,7 @@ import { debounceTime, switchMap, map, first } from 'rxjs/operators';
 
 import { CreatePokemonService } from './create-pokemon.service';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class NameValidatorService{ 
   constructor(private _createPokemonService: CreatePokemonService){ }
 
