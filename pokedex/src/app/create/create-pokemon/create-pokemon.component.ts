@@ -58,11 +58,13 @@ export class CreatePokemonComponent implements OnInit{
   };
 
   addValue(typeToMessage: string, divToAppend: ElementRef<HTMLDivElement>, classNameForQuery: string, arrayOfAddedValues: string[], ulToAppend: ElementRef<HTMLUListElement>){
+    const inputOfTypesOrWeaknesses = divToAppend.nativeElement.querySelector<HTMLInputElement>(`.${classNameForQuery}`);
+    
     const response = confirm(`Deseja realmente adicionar um(a) ${typeToMessage} neste pokemon ?`);
     if(response){
       ulToAppend.nativeElement.innerHTML = '';
   
-      const result = divToAppend.nativeElement.querySelector<HTMLInputElement>(`.${classNameForQuery}`).value;
+      const result = inputOfTypesOrWeaknesses.value;
       arrayOfAddedValues.push(result);
       arrayOfAddedValues.map( type => {
         let li = document.createElement('li');
@@ -71,6 +73,9 @@ export class CreatePokemonComponent implements OnInit{
         li.appendChild(text);
         ulToAppend.nativeElement.appendChild(li);
       });
+
+      inputOfTypesOrWeaknesses.value = '';
+      inputOfTypesOrWeaknesses.focus();
     }
     return false;
   };
