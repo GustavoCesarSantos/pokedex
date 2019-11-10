@@ -1,12 +1,19 @@
 <section>
 
   <form [formGroup]="createPokemonForm">
-  
+    
     <div>
-      
+  
       <small *ngIf="createPokemonForm.get('picture').errors?.required"> Picture is required </small>
 
-      <input  formControlName='picture' placeholder="insert a picture" autofocus>
+      <div class="form">
+        
+        <input formControlName='picture' autofocus type="text" name="picture" autocomplete="off" required />
+        <label class="label-input" for="picture">
+          <span class="content-input"> Picture url </span>
+        </label>
+        
+      </div>
       
     </div>
   
@@ -14,10 +21,17 @@
     
       <small *ngIf="createPokemonForm.get('name').errors?.required"> Name is required </small>
 
-      <small *ngIf="createPokemonForm.get('name').errors?.nameAlreadyExist"> THIS POKEMON ALREADY EXIST </small>
-      <small *ngIf="createPokemonForm.get('name').valid"> OK </small>
+      <small *ngIf="createPokemonForm.get('name').errors?.nameAlreadyExist"> This pokemon already exist </small>
+      <small *ngIf="createPokemonForm.get('name').valid"> Ok </small>
 
-      <input formControlName='name' placeholder="insert pokemon name">
+      <div class="form">
+        
+        <input formControlName='name' type="text" name="name" autocomplete="off" required />
+        <label class="label-input" for="name">
+          <span class="content-input"> Name </span>
+        </label>
+          
+      </div>
       
     </div>
   
@@ -25,10 +39,18 @@
       
       <small *ngIf="createPokemonForm.get('types').errors?.required"> Types is required </small>
       
-      <small *ngIf="createPokemonForm.get('types').errors?.typeNotExist"> THIS TYPE NOT EXIST </small>
-      <small *ngIf="createPokemonForm.get('types').valid"> OK </small>
+      <small *ngIf="createPokemonForm.get('types').errors?.typeNotExist"> This type not exist </small>
+      <small *ngIf="createPokemonForm.get('types').valid"> Ok </small>
+
+      <div class="form">
+        
+        <input formControlName='types' class="types-pokemon" type="text" name="types" autocomplete="off" required />
+        <label class="label-input" for="types">
+          <span class="content-input"> Types </span>
+        </label>
+            
+      </div>
       
-      <input  formControlName='types' class="types-pokemon" placeholder="insert pokemon types">
       <button (click)='addNewInputTypes()'> + </button>
       
       <ul #addedTypes class="ul-types-pokemon"></ul>
@@ -39,17 +61,25 @@
       
       <small *ngIf="createPokemonForm.get('weaknesses').errors?.required"> Weaknesses is required </small>
 
-      <small *ngIf="createPokemonForm.get('weaknesses').errors?.typeNotExist"> THIS TYPE NOT EXIST </small>
-      <small *ngIf="createPokemonForm.get('weaknesses').valid"> OK </small>
+      <small *ngIf="createPokemonForm.get('weaknesses').errors?.typeNotExist"> This weaknesses not exist </small>
+      <small *ngIf="createPokemonForm.get('weaknesses').valid"> Ok </small>
 
-      <input  formControlName='weaknesses' class="weaknesses-pokemon" placeholder="insert pokemon weaknesses">
+      <div class="form">
+        
+        <input formControlName='weaknesses' class="weaknesses-pokemon" type="text" name="weaknesses" autocomplete="off" required />
+        <label class="label-input" for="weaknesses">
+          <span class="content-input"> Weaknesses </span>
+        </label>
+            
+      </div>
+
       <button (click)='addNewInputWeaknesses()'> + </button>
 
       <ul #addedWeaknesses class="ul-weaknesses-pokemon"></ul>
   
     </div>
 
-    <button [disabled]='createPokemonForm.invalid' (click)='createPokemon()'>Create</button>
+    <button [disabled]="createPokemonForm.invalid" (click)='createPokemon()'> Create </button>
     
     <a [routerLink]="['']"> ( Home ) </a>
     
