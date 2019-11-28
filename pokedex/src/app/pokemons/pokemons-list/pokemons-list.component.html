@@ -1,6 +1,10 @@
-<p-search  [textSearch]="filter" (onSearch)="filter = $event" ></p-search>
-
-<p-pokemons [pokemons]="pokemons.docs | findByName: filter "></p-pokemons>
-
-<p-next-button *ngIf="pokemons.page < pokemons.pages" (click)="nextPage()"></p-next-button>
-<p-previous-button *ngIf="pokemons.page > 1" (click)="previousPage()"></p-previous-button>
+<section>
+  <p-search  [textSearch]="filter" (onSearch)="filter = $event" ></p-search>
+  
+  <p-pokemons [pokemons]="pokemons.docs | findByName: filter "></p-pokemons>
+  
+  <p-next-button *ngIf="pokemons.page < pokemons.pages" (click)="nextPage()"></p-next-button>
+  <p-previous-button *ngIf="pokemons.page > 1" (click)="previousPage()"></p-previous-button>
+  
+  <a [routerLink]="['', 'create', 'pokemon']"> ( Create Pokemon ) </a>
+</section>

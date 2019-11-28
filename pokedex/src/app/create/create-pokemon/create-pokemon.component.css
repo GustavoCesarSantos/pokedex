@@ -99,3 +99,9 @@ div{
 .form input:valid + .label-input::after{
   transform:  translateX(0%);
 }
+
+a{
+  margin: .5em;
+
+  color: black;
+}
