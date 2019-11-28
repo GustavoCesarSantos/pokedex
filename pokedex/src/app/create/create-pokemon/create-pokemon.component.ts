@@ -62,7 +62,7 @@ export class CreatePokemonComponent implements OnInit{
     
     if(inputOfTypesOrWeaknesses.value == ''){
       inputOfTypesOrWeaknesses.focus();
-      return alert(`Insira um ${typeToMessage}.`)
+      return alert(`Insira um(a) ${typeToMessage}.`)
     }
     
     const response = confirm(`Deseja realmente adicionar um(a) ${typeToMessage} neste pokemon ?`);

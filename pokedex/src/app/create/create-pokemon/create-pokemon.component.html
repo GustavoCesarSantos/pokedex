@@ -73,7 +73,7 @@
             
       </div>
 
-      <button (click)='addNewInputWeaknesses()'> + </button>
+      <button [disabled]="createPokemonForm.get('weaknesses').errors?.typeNotExist" (click)='addNewInputWeaknesses()'> + </button>
 
       <ul #addedWeaknesses class="ul-weaknesses-pokemon"></ul>
   
