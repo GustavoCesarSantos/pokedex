@@ -8,6 +8,6 @@ module.exports = (app) => {
 
   app.route(urls.TYPE_NAME)
     .get(TypeController.getType)
-    .delete(TypeController.removeType)
-    .put(TypeController.updateType);
+    .put(TypeController.updateType)
+    .delete(TypeController.removeType);
 }

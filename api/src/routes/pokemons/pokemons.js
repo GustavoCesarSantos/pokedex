@@ -8,6 +8,6 @@ module.exports = (app) => {
 
   app.route(urls.POKEMON_NAME)
     .get(PokemonController.getPokemon)
-    .delete(PokemonController.removePokemon)
-    .put(PokemonController.updatePokemon);
+    .put(PokemonController.updatePokemon)
+    .delete(PokemonController.removePokemon);
 }
