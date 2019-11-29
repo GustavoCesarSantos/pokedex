@@ -29,7 +29,6 @@ module.exports = class PokemonController{
 
   static async setPokemon(req,res){
     try{
-
       const pokemon = new Pokemon(req.body);
       
       const typeService = new TypeService();
