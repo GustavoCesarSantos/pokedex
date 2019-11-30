@@ -1,6 +1,8 @@
 const PokemonDao = require('./PokemonDao');
 const messages = require('../../helpers/constant/messages');
 
+const TypeService = require('../type/TypeService');
+
 const pokemonDao = new PokemonDao();
 
 module.exports = class PokemonService{
@@ -15,11 +17,19 @@ module.exports = class PokemonService{
   };
 
   async setPokemon(pokemon){
-    if(await pokemonDao.getPokemon(pokemon.name)){
+    if(await pokemonDao.getPokemon(pokemon.name))
       throw new Error(messages.POKEMON_EXISTS);
-    }else{
-      await pokemonDao.setPokemon(pokemon);
-    };
+
+    const typeService = new TypeService();
+    const objectTypes = await typeService.getTypes();
+    const arrayTypes = [];
+    objectTypes.docs.map( type => arrayTypes.push(type.name));
+    const isValid = pokemon.isValid(arrayTypes);
+    
+    if(!isValid)
+      throw new Error(pokemon.modelStateError);
+    
+    await pokemonDao.setPokemon(pokemon)
   };
 
   async updatePokemon(pokemonName, pokemonData){

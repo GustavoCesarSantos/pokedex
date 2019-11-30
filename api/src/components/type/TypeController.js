@@ -17,7 +17,7 @@ module.exports = class TypeController{
 
   static async getType(req,res){
     try{
-      const name = req.params.name;
+      const { name } = req.params;
       const type = await typeService.getType(name);
       res.status(200).json(type);
     }catch(err){
@@ -37,7 +37,7 @@ module.exports = class TypeController{
 
   static async updateType(req,res){
     try{
-      const name = req.params.name;
+      const { name } = req.params;
       const data = req.body;
       const type = await typeService.updateType(name, data);
       res.status(200).json(type);
@@ -48,7 +48,7 @@ module.exports = class TypeController{
 
   static async removeType(req,res){
     try{
-      const name = req.params.name;
+      const { name } = req.params;
       await typeService.removeType(name);
       const types = await typeService.getTypes(1);
       res.status(200).json(types);
