@@ -50,8 +50,8 @@ module.exports = class PokemonController{
     try{
       const { name } = req.params;
       await pokemonService.removePokemon(name);
-      
-      const pokemons = await pokemonService.getPokemons(1);
+
+      const pokemons = await pokemonService.getPokemons();
       res.status(200).json(pokemons);
     }catch(err){
       res.status(500).json(err.message);
