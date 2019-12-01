@@ -1,5 +1,5 @@
-const PokemonService = require('./PokemonService');
 const Pokemon = require('./Pokemon');
+const PokemonService = require('./PokemonService');
 const messages = require('../../helpers/constant/messages');
 
 const pokemonService = new PokemonService();
@@ -50,6 +50,7 @@ module.exports = class PokemonController{
     try{
       const { name } = req.params;
       await pokemonService.removePokemon(name);
+      
       const pokemons = await pokemonService.getPokemons(1);
       res.status(200).json(pokemons);
     }catch(err){
