@@ -24,12 +24,12 @@ module.exports = class PokemonService{
     const objectTypes = await typeService.getTypes();
     const arrayTypes = [];
     objectTypes.docs.map( type => arrayTypes.push(type.name));
-    const isValid = pokemon.isValid(arrayTypes);
     
+    const isValid = pokemon.isValid(arrayTypes);
     if(!isValid)
       throw new Error(pokemon.modelStateError);
     
-    await pokemonDao.setPokemon(pokemon)
+    await pokemonDao.setPokemon(pokemon);
   };
 
   async updatePokemon(pokemonName, pokemonData){
