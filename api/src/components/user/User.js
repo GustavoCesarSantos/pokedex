@@ -6,7 +6,7 @@ module.exports = class User{
     this.email = user.email;
     this.password = user.password;
     this.level = user.level;
-    this.date = user.date
+    this.modelStateError = '';
   }
 
   isValid(userData){
@@ -16,6 +16,13 @@ module.exports = class User{
       password: Joi.string().min(6).max(24).required(),
       level: Joi.string().required()
     });
-    return userSchemaValidate.validate(userData);
+    
+    const { error } = userSchemaValidate.validate(userData);
+    if(error){
+      this.modelStateError = error.details[0].message;
+      return false;
+    }
+
+    return true;
   }
 }
