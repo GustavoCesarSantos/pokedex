@@ -21,7 +21,7 @@ module.exports = class PokemonController{
       const pokemon = await pokemonService.getPokemon(name);
       res.status(200).json(pokemon);
     }catch(err){
-      res.status(500).json({ error: messages.DEFAULT_ERROR });
+      res.status(500).json(err.message);
     };
   };
 

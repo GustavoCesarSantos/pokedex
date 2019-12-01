@@ -11,6 +11,10 @@ module.exports = class TypeService{
 
   async getType(typeName){
     const type = await typeDao.getType(typeName);
+
+    if(!type)
+      throw new Error(messages.TYPE_NOT_EXISTS);
+
     return type;
   };
 

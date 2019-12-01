@@ -11,6 +11,10 @@ module.exports = class UserService{
 
   async getUser(userEmail){
     const user = await userDao.getUser(userEmail);
+    
+    if(!user)
+      throw new Error(messages.USER_NOT_EXISTS);
+
     return user;
   };
 

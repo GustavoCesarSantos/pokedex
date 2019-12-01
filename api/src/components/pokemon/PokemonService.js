@@ -13,6 +13,10 @@ module.exports = class PokemonService{
 
   async getPokemon(pokemonName){
     const pokemon = await pokemonDao.getPokemon(pokemonName);
+
+    if(!pokemon)
+      throw new Error(messages.POKEMON_NOT_EXISTS);
+
     return pokemon;
   };
 

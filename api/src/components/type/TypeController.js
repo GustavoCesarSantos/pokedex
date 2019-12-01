@@ -21,7 +21,7 @@ module.exports = class TypeController{
       const type = await typeService.getType(name);
       res.status(200).json(type);
     }catch(err){
-      res.status(500).json({ error: messages.DEFAULT_ERROR });
+      res.status(500).json(err.message);
     };
   };
 
@@ -50,7 +50,7 @@ module.exports = class TypeController{
     try{
       const { name } = req.params;
       await typeService.removeType(name);
-      const types = await typeService.getTypes(1);
+      const types = await typeService.getTypes();
       res.status(200).json(types);
     }catch(err){
       res.status(500).json(err.message);

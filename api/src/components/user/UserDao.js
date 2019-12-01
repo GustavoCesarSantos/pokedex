@@ -2,7 +2,7 @@ const Users = require('../../database/models/Users');
 
 module.exports = class UserDao{
   async getUsers(pageNumber = 1){
-    const users = await Users.paginate({}, { page = pageNumber, limit = 12 });
+    const users = await Users.paginate({}, { page: pageNumber, limit: 12 });
     return users; 
   };
 
@@ -16,7 +16,7 @@ module.exports = class UserDao{
   };
 
   async updateUser(userEmail, userData){
-    const user = await Users.findByIdAndUpdate({ email: userEmail }, userData, { new: true });
+    const user = await Users.findOneAndUpdate({ email: userEmail }, userData, { new: true });
     return user
   };
 

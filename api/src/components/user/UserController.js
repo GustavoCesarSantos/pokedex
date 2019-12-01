@@ -21,7 +21,7 @@ module.exports = class UserController{
       const user = await userService.getUser(email);
       res.status(200).json(user);
     }catch(err){
-      res.status(500).json({ error: messages.DEFAULT_ERROR });
+      res.status(500).json(err.message);
     };
   };
 
