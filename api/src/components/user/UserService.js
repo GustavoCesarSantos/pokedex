@@ -1,3 +1,5 @@
+const bcrypt = require('bcryptjs');
+
 const UserDao = require('./UserDao');
 const messages = require('../../helpers/constant/messages');
 
@@ -25,6 +27,10 @@ module.exports = class UserService{
     const isValid = user.isValid(user);
     if(!isValid)
       throw new Error(user.modelStateError);
+    
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(user.password, salt);
+    user.password = hashedPassword;
     
     await userDao.setUSer(user);
   };
