@@ -13,5 +13,8 @@ module.exports = {
   USER_EXISTS:  'This user already exists',
   USER_NOT_EXISTS:  'This user not exists',
 
-  LOGIN_DEFAULT_ERROR: 'E-mail or password is wrong'
+  LOGIN_DEFAULT_ERROR: 'E-mail or password is wrong',
+
+  TOKEN_NOT_PROVIDED: 'No token provided',
+  TOKEN_INVALID: 'This token is invalid'
 }
