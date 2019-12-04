@@ -22,8 +22,8 @@ module.exports = class User{
     if(error){
       this.modelStateError = error.details[0].message;
       return false;
-    }
+    };
 
     return true;
-  }
-}
+  };
+};
