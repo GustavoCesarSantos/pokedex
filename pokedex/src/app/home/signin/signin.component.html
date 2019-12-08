@@ -1,0 +1,23 @@
+<h1>Login</h1>
+
+<form [formGroup]="loginForm" (submit)="login()">
+
+  <div>
+
+    <small *ngIf="loginForm.get('email').errors?.required"> E-mail is required </small>
+
+    <input formControlName="email" type="text" placeholder="E-mail" autofocus>
+
+  </div>
+
+  <div>
+
+    <small *ngIf="loginForm.get('password').errors?.required"> Password is required </small>
+
+    <input formControlName="password" type="text" placeholder="Password">
+
+  </div>
+
+  <button [disabled]="loginForm.invalid" type="submit">Login</button>
+
+</form>

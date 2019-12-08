@@ -1,12 +1,15 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { HomeComponent } from './home/home.component';
+import { SigninComponent } from './signin/signin.component';
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    SigninComponent
   ],
   exports: [
 
@@ -14,6 +17,8 @@ import { HomeComponent } from './home/home.component';
   imports: [
     CommonModule,
     RouterModule,
+    ReactiveFormsModule
+
   ]
 })
 

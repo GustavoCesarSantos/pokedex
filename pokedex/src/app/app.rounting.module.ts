@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home/home.component';
 import { PokemonsListComponent } from './pokemons/pokemons-list/pokemons-list.component';
 import { PokemonListResolver } from './pokemons/pokemons-list/pokemons-list.resolver';
-import { CreatePokemonComponent } from './create/create-pokemon/create-pokemon.component';
+import { SigninComponent } from './home/signin/signin.component';
 
 const routes: Routes = [
   {
@@ -28,6 +28,10 @@ const routes: Routes = [
   {
     path:'create/pokemon',
     loadChildren: './create/create.module#CreateModule'
+  },
+  {
+    path:'login',
+    component: SigninComponent
   }
 ]
 

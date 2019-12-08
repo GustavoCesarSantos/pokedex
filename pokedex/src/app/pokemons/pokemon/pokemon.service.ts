@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { Pokemon } from './pokemon';
 
-const API_URL = 'http://localhost:3000/v1/pokemons';
+const API_URL = 'http://localhost:3000/v1';
 
 @Injectable({ providedIn: 'root' })
 export class PokemonService { 
@@ -11,10 +11,10 @@ export class PokemonService {
   
   listFromPokedexPaginated(page: number){
     const params = new HttpParams().append('page', page.toString());
-    return this._http.get<Pokemon[]>(`${API_URL}`, { params });
+    return this._http.get<Pokemon[]>(`${API_URL}/pokemons`, { params });
   };
 
   listFromPokemonName(pokemonName: string){
-    return this._http.get<Pokemon[]>(`${API_URL}/${pokemonName}`);
+    return this._http.get<Pokemon[]>(`${API_URL}/pokemons/${pokemonName}`);
   }
 };
