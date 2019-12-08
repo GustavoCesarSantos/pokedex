@@ -11,8 +11,8 @@ module.exports = class UserService{
     return users;
   };
 
-  async getUser(userEmail){
-    const user = await userDao.getUser(userEmail);
+  async getUser(userName){
+    const user = await userDao.getUser(userName);
     
     if(!user)
       throw new Error(messages.USER_NOT_EXISTS);
@@ -21,7 +21,7 @@ module.exports = class UserService{
   };
 
   async setUser(user){
-    if(await userDao.getUser(user.email))
+    if(await userDao.getUser(user.name))
       throw new Error(messages.USER_EXISTS);
     
     const isValid = user.isValid(user);
@@ -35,20 +35,25 @@ module.exports = class UserService{
     await userDao.setUSer(user);
   };
 
-  async updateUser(userEmail, userData){
-    if(await userDao.getUser(userEmail)){
-      const user = await userDao.updateUser(userEmail, userData);
-      return await userDao.getUser(user.email);
-    }else{
+  async updateUser(userName, userData){
+    const user = await userDao.getUser(userName);
+    if(!user)
       throw new Error(messages.USER_NOT_EXISTS);
-    };
+    
+    if(user.name === userData.name)
+      throw new Error(messages.USER_EXISTS);
+  
+    if(user.email === userData.email)
+      throw new Error(messages.USER_EMAIL_EXISTS);
+
+    const userUpdated = await userDao.updateUser(userName, userData);
+    return await userDao.getUser(userUpdated.name);
   };
 
-  async removeUser(userEmail){
-    if(await userDao.getUser(userEmail)){
-      await userDao.removeUser(userEmail);
-    }else{
+  async removeUser(userName){
+    if(!await userDao.getUser(userName))
       throw new Error(messages.USER_NOT_EXISTS);
-    };
+    
+    await userDao.removeUser(userName);
   };
 };

@@ -6,7 +6,7 @@ module.exports = {
   TYPE_NAME: '/v1/types/:name',
 
   USERS: '/v1/users',
-  USER_EMAIL: '/v1/users/:email',
+  USER_EMAIL: '/v1/users/:name',
 
   LOGIN: '/v1/login'
 }

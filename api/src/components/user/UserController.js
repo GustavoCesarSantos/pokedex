@@ -17,8 +17,8 @@ module.exports = class UserController{
 
   static async getUser(req, res){
     try{
-      const { email } = req.params;
-      const user = await userService.getUser(email);
+      const { name } = req.params;
+      const user = await userService.getUser(name);
       res.status(200).json(user);
     }catch(err){
       res.status(500).json(err.message);
@@ -37,9 +37,9 @@ module.exports = class UserController{
 
   static async updateUser(req, res){
     try {
-      const { email } = req.params;
+      const { name } = req.params;
       const data = req.body;
-      const user = await userService.updateUser(email, data);
+      const user = await userService.updateUser(name, data);
       res.status(200).json(user);
     } catch (err) {
       res.status(500).json(err.message);
@@ -48,8 +48,8 @@ module.exports = class UserController{
 
   static async removeUser(req, res){
     try {
-      const { email } = req.params;
-      await userService.removeUser(email);
+      const { name } = req.params;
+      await userService.removeUser(name);
 
       const users = await userService.getUsers();
       res.status(200).json(users);

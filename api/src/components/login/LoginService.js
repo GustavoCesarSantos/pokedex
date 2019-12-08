@@ -8,13 +8,13 @@ const config = require('../../config/config');
 const userService = new UserService();
 
 module.exports = class LoginService{
-  async login(loginData){
-    const isValid = loginData.isValid(loginData);
+  async login(login){
+    const isValid = login.isValid(login);
     if(!isValid)
       throw new Error(login.modelStateError);
     
-    const { email, password } = loginData;
-    const userExist = await userService.getUser(email);
+    const { name, password } = login;
+    const userExist = await userService.getUser(name);
     if(!userExist)
       throw new Error(messages.LOGIN_DEFAULT_ERROR);
 

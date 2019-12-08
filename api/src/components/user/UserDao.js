@@ -6,8 +6,8 @@ module.exports = class UserDao{
     return users; 
   };
 
-  async getUser(userEmail){
-    const user = await Users.findOne({ email: userEmail });
+  async getUser(userName){
+    const user = await Users.findOne({ name: userName });
     return user;
   };
 
@@ -15,12 +15,12 @@ module.exports = class UserDao{
     await Users.create(user);
   };
 
-  async updateUser(userEmail, userData){
-    const user = await Users.findOneAndUpdate({ email: userEmail }, userData, { new: true });
+  async updateUser(userName, userData){
+    const user = await Users.findOneAndUpdate({ name: userName }, userData, { new: true });
     return user
   };
 
-  async removeUser(userEmail){
-    await Users.deleteOne({ email: userEmail });
+  async removeUser(userName){
+    await Users.deleteOne({ name: userName });
   };
 };
