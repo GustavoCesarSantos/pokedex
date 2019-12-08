@@ -4,9 +4,9 @@
 
   <div>
 
-    <small *ngIf="loginForm.get('email').errors?.required"> E-mail is required </small>
+    <small *ngIf="loginForm.get('userName').errors?.required"> UserName is required </small>
 
-    <input formControlName="email" type="text" placeholder="E-mail" autofocus>
+    <input formControlName="userName" type="text" placeholder="UserName" autofocus>
 
   </div>
 

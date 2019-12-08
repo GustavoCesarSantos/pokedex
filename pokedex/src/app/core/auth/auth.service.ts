@@ -9,8 +9,8 @@ const API_URL = 'http://localhost:3000/v1';
 export class AuthService {
   constructor(private _http: HttpClient){ }
 
-  authenticate(email: string, password:string){
-    return this._http.post(`${API_URL}/login`, { email, password });
+  authenticate(name: string, password:string){
+    return this._http.post(`${API_URL}/login`, { name, password });
   };
 
 };

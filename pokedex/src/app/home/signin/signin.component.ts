@@ -15,16 +15,17 @@ export class SigninComponent implements OnInit{
 
   ngOnInit(): void {
     this.loginForm = this._formBuilder.group({
-      email: ['', Validators.required],
+      userName: ['', Validators.required],
       password: ['', Validators.required]
     });
 
   };
 
   login(){
-    const email = this.loginForm.get('email').value;
+    const userName = this.loginForm.get('userName').value;
     const password = this.loginForm.get('password').value;
-    this._authService.authenticate(email, password)
+    
+    this._authService.authenticate(userName, password)
       .subscribe(
         () => console.log('Autenticado'),
         error => {
