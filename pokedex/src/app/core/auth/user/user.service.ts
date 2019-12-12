@@ -5,9 +5,9 @@ import * as jwtDecode from 'jwt-decode';
 import { TokenService } from '../token/token.service';
 import { User } from './user';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class UserService {
-  private userSubject = new BehaviorSubject<User>(null);
+  private _userSubject = new BehaviorSubject<User>(null);
 
   constructor(private _tokenService: TokenService){ 
     if(this._tokenService.hasToken())
@@ -17,11 +17,11 @@ export class UserService {
   private _decodeAndNotify(){
     const token = this._tokenService.getToken();
     const user = jwtDecode(token) as User;
-    this.userSubject.next(user);
+    this._userSubject.next(user);
   }
 
   getUser(){
-    return this.userSubject.asObservable();
+    return this._userSubject.asObservable();
   }
 
   setToken(token){
@@ -35,6 +35,6 @@ export class UserService {
 
   logout(){
     this._tokenService.removeToken();
-    this.userSubject.next(null);
+    this._userSubject.next(null);
   }
 }

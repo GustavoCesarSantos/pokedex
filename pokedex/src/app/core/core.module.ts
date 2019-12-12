@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 
 import { HeaderComponent } from './header/header.component';
 import { TokenService } from './auth/token/token.service';
-import { UserService } from './auth/user/user.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RequestInterceptor } from './auth/request.interceptor';
 
@@ -21,7 +20,6 @@ import { RequestInterceptor } from './auth/request.interceptor';
   ],
   providers: [
     TokenService,
-    UserService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: RequestInterceptor,

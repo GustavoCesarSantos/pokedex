@@ -9,7 +9,6 @@ import { UserService } from '../auth/user/user.service';
   selector: 'p-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
-  providers: [ UserService ]
 })
 export class HeaderComponent {
   user$: Observable<User>;
