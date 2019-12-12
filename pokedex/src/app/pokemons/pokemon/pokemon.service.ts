@@ -5,7 +5,7 @@ import { Pokemon } from './pokemon';
 
 const API_URL = 'http://localhost:3000/v1';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class PokemonService { 
   constructor(private _http: HttpClient) { }
   

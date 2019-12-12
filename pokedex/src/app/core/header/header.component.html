@@ -1,0 +1,14 @@
+<header>
+  <div *ngIf="(user$ | async ) as user; else login">
+    <div>
+      {{ user._id }}
+      <a (click)="logout()">Logout</a>
+    </div>
+  </div>
+
+  <ng-template #login>
+    <div>
+      <a [routerLink]="['login']">Login</a>
+    </div>
+  </ng-template>
+</header>

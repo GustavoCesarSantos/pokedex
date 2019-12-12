@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -6,10 +6,12 @@ import { AuthService } from 'src/app/core/auth/auth.service';
 
 @Component({
   templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.css']
+  styleUrls: ['./signin.component.css'],
+  providers: [ AuthService ]
 })
 export class SigninComponent implements OnInit{
   loginForm: FormGroup;
+  @ViewChild('userNameInput', {static:false}) userNameInput: ElementRef<HTMLInputElement>;
   
   constructor(
     private _formBuilder: FormBuilder,
@@ -34,6 +36,8 @@ export class SigninComponent implements OnInit{
         error => {
           console.error(error);
           this.loginForm.reset();
+          this.userNameInput.nativeElement.focus();
+          alert('E-mail ou senha invalidos')
          }
       );
   };

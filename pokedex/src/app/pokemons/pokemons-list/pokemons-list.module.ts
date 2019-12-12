@@ -9,6 +9,7 @@ import { SearchComponent } from './search/search.component';
 import { FindByNamePipe } from './find-by-name.pipe';
 import { PokemonModule } from '../pokemon/pokemon.module';
 import { RouterModule } from '@angular/router';
+import { PokemonService } from '../pokemon/pokemon.service';
 
 
 @NgModule({
@@ -24,6 +25,9 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     PokemonModule,
     RouterModule
+  ],
+  providers: [
+    PokemonService
   ]
 })
 export class PokemonsListModule { }

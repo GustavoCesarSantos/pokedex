@@ -5,6 +5,8 @@ import { HomeComponent } from './home/home/home.component';
 import { PokemonsListComponent } from './pokemons/pokemons-list/pokemons-list.component';
 import { PokemonListResolver } from './pokemons/pokemons-list/pokemons-list.resolver';
 import { SigninComponent } from './home/signin/signin.component';
+import { TokenGuard } from './core/auth/token/token.guard';
+import { SigninGuard } from './home/signin/signin.guard';
 
 const routes: Routes = [
   {
@@ -14,25 +16,21 @@ const routes: Routes = [
   },
   {
     path:'pokedex',
-    component: HomeComponent,
-    children: [
-      {
-        path:'',
-        component: PokemonsListComponent,
-        resolve: {
-          pokemons: PokemonListResolver
-        }
-      },
-    ]
-  },
-  {
-    path:'create/pokemon',
-    loadChildren: './create/create.module#CreateModule'
+    component: PokemonsListComponent,
+    resolve: {
+      pokemons: PokemonListResolver
+    }
   },
   {
     path:'login',
-    component: SigninComponent
-  }
+    component: SigninComponent,
+    canActivate: [SigninGuard]
+  },
+  {
+    path:'create/pokemon',
+    loadChildren: './create/create.module#CreateModule',
+    canActivate: [TokenGuard]
+  },
 ]
 
 @NgModule({ 
