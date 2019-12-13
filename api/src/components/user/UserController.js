@@ -17,8 +17,8 @@ module.exports = class UserController{
 
   static async getUser(req, res){
     try{
-      const { name } = req.params;
-      const user = await userService.getUser(name);
+      const { id } = req.params;
+      const user = await userService.getUser(id);
       res.status(200).json(user);
     }catch(err){
       res.status(500).json(err.message);
@@ -37,9 +37,9 @@ module.exports = class UserController{
 
   static async updateUser(req, res){
     try {
-      const { name } = req.params;
+      const { id } = req.params;
       const data = req.body;
-      const user = await userService.updateUser(name, data);
+      const user = await userService.updateUser(id, data);
       res.status(200).json(user);
     } catch (err) {
       res.status(500).json(err.message);

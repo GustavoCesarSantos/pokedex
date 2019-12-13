@@ -6,7 +6,7 @@ module.exports = (app) => {
     .get(UserController.getUsers)
     .post(UserController.setUser);
   
-  app.route(urls.USER_EMAIL)
+  app.route(urls.USER_ID)
     .get(UserController.getUser)
     .put(UserController.updateUser)
     .delete(UserController.removeUser);

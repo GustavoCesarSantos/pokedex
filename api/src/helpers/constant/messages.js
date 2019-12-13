@@ -11,7 +11,6 @@ module.exports = {
 
   USER_CREATED: 'User created with success',
   USER_EXISTS:  'This user already exists',
-  USER_EMAIL_EXISTS:  'This e-mail already exists',
   USER_NOT_EXISTS:  'This user not exists',
 
   LOGIN_DEFAULT_ERROR: 'Name or password is wrong',
