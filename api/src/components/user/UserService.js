@@ -22,8 +22,8 @@ module.exports = class UserService{
 
   async setUser(user){
     const users = await userDao.getUsers();
-    users.docs.map(userModel => {
-      if(userModel.email === user.email)
+    users.docs.map(userData => {
+      if(userData.email === user.email)
         throw new Error(messages.USER_EXISTS);
     });
     
@@ -42,6 +42,10 @@ module.exports = class UserService{
     const user = await userDao.getUser(userId);
     if(!user)
       throw new Error(messages.USER_NOT_EXISTS);
+
+    if(userData.email)
+      if(user.email === userData.email)
+        throw new Error(messages.USER_EMAIL_EXISTS);
 
     const userUpdated = await userDao.updateUser(userId, userData);
     return await userDao.getUser(userUpdated._id);

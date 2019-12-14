@@ -13,11 +13,18 @@ module.exports = class LoginService{
     if(!isValid)
       throw new Error(login.modelStateError);
     
-    const { name, password } = login;
-    const userExist = await userService.getUser(name);
-    if(!userExist)
+    const { email, password } = login;
+    
+    let idUser = '';
+    const users = await userService.getUsers();
+    users.docs.map(user => {
+      if(user.email === email)
+        idUser = user.id;
+    });
+    if(idUser === '')
       throw new Error(messages.LOGIN_DEFAULT_ERROR);
-
+    
+    const userExist = await userService.getUser(idUser);
     const validPass = await bcrypt.compare(password, userExist.password);
     if(!validPass)
       throw new Error(messages.LOGIN_DEFAULT_ERROR);
