@@ -48,8 +48,8 @@ module.exports = class UserController{
 
   static async removeUser(req, res){
     try {
-      const { name } = req.params;
-      await userService.removeUser(name);
+      const { id } = req.params;
+      await userService.removeUser(id);
 
       const users = await userService.getUsers();
       res.status(200).json(users);

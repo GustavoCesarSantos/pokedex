@@ -22,10 +22,10 @@ module.exports = class UserService{
 
   async setUser(user){
     const users = await userDao.getUsers();
-    const userExists = users.docs.includes(user.email);
-    
-    if(userExists)
-      throw new Error(messages.USER_EXISTS);
+    users.docs.map(userModel => {
+      if(userModel.email === user.email)
+        throw new Error(messages.USER_EXISTS);
+    });
     
     const isValid = user.isValid(user);
     if(!isValid)
