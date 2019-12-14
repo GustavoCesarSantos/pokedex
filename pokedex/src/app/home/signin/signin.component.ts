@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/core/auth/auth.service';
 })
 export class SigninComponent implements OnInit{
   loginForm: FormGroup;
-  @ViewChild('userNameInput', {static:false}) userNameInput: ElementRef<HTMLInputElement>;
+  @ViewChild('emailInput', { static:false }) emailInput: ElementRef<HTMLInputElement>;
   
   constructor(
     private _formBuilder: FormBuilder,
@@ -20,23 +20,23 @@ export class SigninComponent implements OnInit{
 
   ngOnInit(): void {
     this.loginForm = this._formBuilder.group({
-      userName: ['', Validators.required],
+      email: ['', Validators.required],
       password: ['', Validators.required]
     });
 
   };
 
   login(){
-    const userName = this.loginForm.get('userName').value;
+    const email = this.loginForm.get('email').value;
     const password = this.loginForm.get('password').value;
     
-    this._authService.authenticate(userName, password)
+    this._authService.authenticate(email, password)
       .subscribe(
         () => this._router.navigate(['']),
         error => {
           console.error(error);
           this.loginForm.reset();
-          this.userNameInput.nativeElement.focus();
+          this.emailInput.nativeElement.focus();
           alert('E-mail ou senha invalidos')
          }
       );

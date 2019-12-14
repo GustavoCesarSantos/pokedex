@@ -12,7 +12,7 @@ export class NameValidatorService{
     return(control: AbstractControl) => {
       return control.valueChanges.pipe(debounceTime(300))
         .pipe(switchMap(pokemonName => this._createPokemonService.verifyIfNameAlreadyExist(pokemonName)))
-          .pipe(map(alredyExist => alredyExist ? { nameAlreadyExist: true }: null))
+          .pipe(map(alreadyExist => alreadyExist ? { nameAlreadyExist: true }: null))
             .pipe(first());
     };
   };

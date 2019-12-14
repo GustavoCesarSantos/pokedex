@@ -11,11 +11,11 @@ export class AuthService {
   constructor(private _http: HttpClient,
     private _userService: UserService){ }
 
-  authenticate(name: string, password:string){
-    return this._http.post(`${API_URL}/login`, { name, password }, { observe: 'response' })
+  authenticate(email: string, password:string){
+    return this._http.post(`${API_URL}/login`, { email, password }, { observe: 'response' })
       .pipe(tap(res => {
-        const authToken = res.body['token'];
-        this._userService.setToken(authToken);
+        const token = res.body['token'];
+        this._userService.setToken(token);
       }))
   };
 };

@@ -112,7 +112,6 @@ export class CreatePokemonComponent implements OnInit{
     
     pokemon.types = arrayTypes;
     pokemon.weaknesses = arrayWeaknesses;
-    console.log(pokemon)
     this._createPokemonService.createPokemon(pokemon).subscribe(
       () => {
         this.goToHome();

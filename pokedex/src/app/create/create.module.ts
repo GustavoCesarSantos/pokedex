@@ -22,11 +22,6 @@ import { TypeValidatorService } from './create-pokemon/type.validator.service';
     ReactiveFormsModule,
     RouterModule,
     CreateRoutingModule
-  ],
-  providers: [
-    CreatePokemonService,
-    NameValidatorService,
-    TypeValidatorService
   ]
 })
 export class CreateModule { }
