@@ -1,0 +1,14 @@
+version: "3.6"
+volumes:
+  pokedexBase: {}
+services:
+  mongodb:
+    image: mongo
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=pokedex
+      - MONGO_INITDB_ROOT_PASSWORD=pokemon
+    ports:
+      - "27017:27017"
+    volumes:
+      - ../pokedexBase:/data

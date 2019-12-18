@@ -37,7 +37,7 @@
   
     <div #typesPokemons class='types-pokemons'>
 
-      <select (change)="addNewInputTypes($event.target.value)">
+      <select id="selectTypes" (change)="addNewInputTypes($event.target.value)">
 
         <option value="">Types</option>
         <option *ngFor="let type of types.docs" value="{{ type.name }}">{{ type.name }}</option>

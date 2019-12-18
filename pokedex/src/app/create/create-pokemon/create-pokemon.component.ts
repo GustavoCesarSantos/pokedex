@@ -51,13 +51,21 @@ export class CreatePokemonComponent implements OnInit{
 
   addValue(typeToMessage: string, valueOfTypeSelected: string, classNameForQuery: string, arrayOfAddedValues: string[], ulToAppend: ElementRef<HTMLUListElement>){
     if(valueOfTypeSelected === '')
-      return false
+      return false;
+    
+    if(arrayOfAddedValues.includes(valueOfTypeSelected))
+    return false;
+
+    const teste: ElementRef<HTMLSelectElement> = document.querySelector('#selectTypes');
+    teste.nativeElement.selectedIndex = 1;
+    
 
     const response = confirm(`Deseja realmente adicionar um(a) ${typeToMessage} neste pokemon ?`);
     if(response){
       ulToAppend.nativeElement.innerHTML = '';
   
       const result = valueOfTypeSelected;
+      
       arrayOfAddedValues.push(result);
       arrayOfAddedValues.map( type => {
         let li = document.createElement('li');
