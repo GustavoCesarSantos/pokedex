@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
 import { Pokemon } from 'src/app/pokemons/pokemon/pokemon';
+import { Type } from 'src/app/pokemons/pokemon/type';
 
 const API_URL = 'http://localhost:3000/v1';
 
@@ -16,11 +18,11 @@ export class CreatePokemonService {
     }
   };
 
-  verifyIfNameAlreadyExist(pokemonName: string){
-      return this._http.get(`${API_URL}/pokemons/${pokemonName}`);
+  listCreatedPokemonTypes(){
+    return this._http.get<Type[]>(`${API_URL}/types`);
   };
 
-  verifyIfTypeAlreadyExist(pokemonType: string){
-    return this._http.get(`${API_URL}/types/${pokemonType}`);
+  verifyIfNameAlreadyExist(pokemonName: string){
+      return this._http.get(`${API_URL}/pokemons/${pokemonName}`);
   };
 };

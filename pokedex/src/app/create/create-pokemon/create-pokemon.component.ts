@@ -3,27 +3,25 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { NameValidatorService } from './name.validator.service';
-import { TypeValidatorService } from './type.validator.service';
 import { CreatePokemonService } from './create-pokemon.service';
 import { Pokemon } from 'src/app/pokemons/pokemon/pokemon';
+import { Type } from 'src/app/pokemons/pokemon/type';
 
 @Component({
   templateUrl: './create-pokemon.component.html',
   styleUrls: ['./create-pokemon.component.css'],
-  providers: [ CreatePokemonService, NameValidatorService, TypeValidatorService ]
+  providers: [ CreatePokemonService, NameValidatorService ]
 })
 export class CreatePokemonComponent implements OnInit{
   createPokemonForm : FormGroup;
+  types: Type[] = [];
   arrayOfAddedTypes: string[] = [];
   arrayOfAddedWeaknesses: string[] = [];
-  @ViewChild('typesPokemons', { static:false }) private divTypes: ElementRef<HTMLDivElement>;
   @ViewChild('addedTypes', { static:false }) private ulTypes: ElementRef<HTMLUListElement>;
-  @ViewChild('weaknessesPokemons', { static:false }) private divWeaknesses: ElementRef<HTMLDivElement>;
   @ViewChild('addedWeaknesses', { static:false }) private ulWeaknesses: ElementRef<HTMLUListElement>;
 
   constructor(private _formBuilder: FormBuilder,
     private _nameValidatorService: NameValidatorService,
-    private _typeValidatorService: TypeValidatorService,
     private _createPokemonService: CreatePokemonService,
     private _router: Router){ }
   
@@ -39,37 +37,27 @@ export class CreatePokemonComponent implements OnInit{
           Validators.required
         ],
         this._nameValidatorService.verifyIfNameAlreadyExist()
-      ],
-      'types': [
-        '',
-        [
-          Validators.required
-        ],
-        this._typeValidatorService.verifyIfTypeAlreadyExist()
-      ],
-      'weaknesses': [
-        '',
-        [
-          Validators.required
-        ],
-        this._typeValidatorService.verifyIfTypeAlreadyExist()
       ]
     });
+
+    this.addTypesInComboBox();
   };
 
-  addValue(typeToMessage: string, divToAppend: ElementRef<HTMLDivElement>, classNameForQuery: string, arrayOfAddedValues: string[], ulToAppend: ElementRef<HTMLUListElement>){
-    const inputOfTypesOrWeaknesses = divToAppend.nativeElement.querySelector<HTMLInputElement>(`.${classNameForQuery}`);
-    
-    if(inputOfTypesOrWeaknesses.value == ''){
-      inputOfTypesOrWeaknesses.focus();
-      return alert(`Insira um(a) ${typeToMessage}.`)
-    }
-    
+  addTypesInComboBox(){
+    this._createPokemonService.listCreatedPokemonTypes().subscribe(res => {
+      this.types = res;
+    });
+  }
+
+  addValue(typeToMessage: string, valueOfTypeSelected: string, classNameForQuery: string, arrayOfAddedValues: string[], ulToAppend: ElementRef<HTMLUListElement>){
+    if(valueOfTypeSelected === '')
+      return false
+
     const response = confirm(`Deseja realmente adicionar um(a) ${typeToMessage} neste pokemon ?`);
     if(response){
       ulToAppend.nativeElement.innerHTML = '';
   
-      const result = inputOfTypesOrWeaknesses.value;
+      const result = valueOfTypeSelected;
       arrayOfAddedValues.push(result);
       arrayOfAddedValues.map( type => {
         let li = document.createElement('li');
@@ -78,25 +66,15 @@ export class CreatePokemonComponent implements OnInit{
         li.appendChild(text);
         ulToAppend.nativeElement.appendChild(li);
       });
-
-      inputOfTypesOrWeaknesses.value = '';
-      inputOfTypesOrWeaknesses.focus();
     }
-
-    inputOfTypesOrWeaknesses.focus();
-    return false;
   };
 
-  addNewInputTypes(){
-    this.addValue('Type', this.divTypes, 'types-pokemon', this.arrayOfAddedTypes, this.ulTypes);
+  addNewInputTypes(valueOfTypeSelected){
+    this.addValue('Type', valueOfTypeSelected, 'types-pokemon', this.arrayOfAddedTypes, this.ulTypes);
   };
 
-  addNewInputWeaknesses(){
-    this.addValue('Weaknesse', this.divWeaknesses, 'weaknesses-pokemon', this.arrayOfAddedWeaknesses, this.ulWeaknesses);
-  };
-
-  goToHome(){
-    this._router.navigate(['']);
+  addNewInputWeaknesses(valueOfTypeSelected){
+    this.addValue('Weaknesse', valueOfTypeSelected, 'weaknesses-pokemon', this.arrayOfAddedWeaknesses, this.ulWeaknesses);
   };
 
   createPokemon(){
@@ -120,5 +98,9 @@ export class CreatePokemonComponent implements OnInit{
         console.log(err.error);
       }
     );
+  };
+
+  goToHome(){
+    this._router.navigate(['']);
   };
 };

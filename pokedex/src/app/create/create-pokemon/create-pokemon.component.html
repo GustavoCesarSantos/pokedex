@@ -36,44 +36,26 @@
     </div>
   
     <div #typesPokemons class='types-pokemons'>
-      
-      <small *ngIf="createPokemonForm.get('types').errors?.required"> Types is required </small>
-      
-      <small *ngIf="createPokemonForm.get('types').errors?.typeNotExist"> This type not exist </small>
-      <small *ngIf="createPokemonForm.get('types').valid"> Ok </small>
 
-      <div class="form">
-        
-        <input formControlName='types' class="types-pokemon" type="text" name="types" autocomplete="off" required />
-        <label class="label-input" for="types">
-          <span class="content-input"> Types </span>
-        </label>
-            
-      </div>
+      <select (change)="addNewInputTypes($event.target.value)">
+
+        <option value="">Types</option>
+        <option *ngFor="let type of types.docs" value="{{ type.name }}">{{ type.name }}</option>
       
-      <button [disabled]="createPokemonForm.get('types').errors?.typeNotExist" (click)='addNewInputTypes()'> + </button>
-      
+      </select>
+    
       <ul #addedTypes class="ul-types-pokemon"></ul>
       
     </div>
     
     <div #weaknessesPokemons class='weaknesses-pokemons'>
+
+      <select (change)="addNewInputWeaknesses($event.target.value)">
+
+        <option value="">Weaknesses</option>
+        <option *ngFor="let type of types.docs" value="{{ type.name }}">{{ type.name }}</option>
       
-      <small *ngIf="createPokemonForm.get('weaknesses').errors?.required"> Weaknesses is required </small>
-
-      <small *ngIf="createPokemonForm.get('weaknesses').errors?.typeNotExist"> This weaknesses not exist </small>
-      <small *ngIf="createPokemonForm.get('weaknesses').valid"> Ok </small>
-
-      <div class="form">
-        
-        <input formControlName='weaknesses' class="weaknesses-pokemon" type="text" name="weaknesses" autocomplete="off" required />
-        <label class="label-input" for="weaknesses">
-          <span class="content-input"> Weaknesses </span>
-        </label>
-            
-      </div>
-
-      <button [disabled]="createPokemonForm.get('weaknesses').errors?.typeNotExist" (click)='addNewInputWeaknesses()'> + </button>
+      </select>
 
       <ul #addedWeaknesses class="ul-weaknesses-pokemon"></ul>
   
