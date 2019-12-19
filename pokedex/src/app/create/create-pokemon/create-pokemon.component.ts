@@ -17,6 +17,8 @@ export class CreatePokemonComponent implements OnInit{
   types: Type[] = [];
   arrayOfAddedTypes: string[] = [];
   arrayOfAddedWeaknesses: string[] = [];
+  @ViewChild('selectType', { static:false }) private selectType: ElementRef<HTMLSelectElement>;
+  @ViewChild('selectWeaknesse', { static:false }) private selectWeaknesse: ElementRef<HTMLSelectElement>;
   @ViewChild('addedTypes', { static:false }) private ulTypes: ElementRef<HTMLUListElement>;
   @ViewChild('addedWeaknesses', { static:false }) private ulWeaknesses: ElementRef<HTMLUListElement>;
 
@@ -49,17 +51,15 @@ export class CreatePokemonComponent implements OnInit{
     });
   }
 
-  addValue(typeToMessage: string, valueOfTypeSelected: string, classNameForQuery: string, arrayOfAddedValues: string[], ulToAppend: ElementRef<HTMLUListElement>){
+  addValue(typeToMessage: string, valueOfTypeSelected: string, classNameForQuery: string, selectTypes: ElementRef<HTMLSelectElement>, arrayOfAddedValues: string[], ulToAppend: ElementRef<HTMLUListElement>){
     if(valueOfTypeSelected === '')
       return false;
     
-    if(arrayOfAddedValues.includes(valueOfTypeSelected))
-    return false;
-
-    const teste: ElementRef<HTMLSelectElement> = document.querySelector('#selectTypes');
-    teste.nativeElement.selectedIndex = 1;
+    if(arrayOfAddedValues.includes(valueOfTypeSelected)){
+      selectTypes.nativeElement.selectedIndex = 0;
+      return false;
+    }
     
-
     const response = confirm(`Deseja realmente adicionar um(a) ${typeToMessage} neste pokemon ?`);
     if(response){
       ulToAppend.nativeElement.innerHTML = '';
@@ -74,15 +74,17 @@ export class CreatePokemonComponent implements OnInit{
         li.appendChild(text);
         ulToAppend.nativeElement.appendChild(li);
       });
+
+      selectTypes.nativeElement.selectedIndex = 0;
     }
   };
 
   addNewInputTypes(valueOfTypeSelected){
-    this.addValue('Type', valueOfTypeSelected, 'types-pokemon', this.arrayOfAddedTypes, this.ulTypes);
+    this.addValue('Type', valueOfTypeSelected, 'types-pokemon', this.selectType, this.arrayOfAddedTypes, this.ulTypes);
   };
 
   addNewInputWeaknesses(valueOfTypeSelected){
-    this.addValue('Weaknesse', valueOfTypeSelected, 'weaknesses-pokemon', this.arrayOfAddedWeaknesses, this.ulWeaknesses);
+    this.addValue('Weaknesse', valueOfTypeSelected, 'weaknesses-pokemon', this.selectWeaknesse, this.arrayOfAddedWeaknesses, this.ulWeaknesses);
   };
 
   createPokemon(){

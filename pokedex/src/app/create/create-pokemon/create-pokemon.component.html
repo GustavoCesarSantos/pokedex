@@ -37,7 +37,7 @@
   
     <div #typesPokemons class='types-pokemons'>
 
-      <select id="selectTypes" (change)="addNewInputTypes($event.target.value)">
+      <select #selectType (change)="addNewInputTypes($event.target.value)">
 
         <option value="">Types</option>
         <option *ngFor="let type of types.docs" value="{{ type.name }}">{{ type.name }}</option>
@@ -50,7 +50,7 @@
     
     <div #weaknessesPokemons class='weaknesses-pokemons'>
 
-      <select (change)="addNewInputWeaknesses($event.target.value)">
+      <select #selectWeaknesse (change)="addNewInputWeaknesses($event.target.value)">
 
         <option value="">Weaknesses</option>
         <option *ngFor="let type of types.docs" value="{{ type.name }}">{{ type.name }}</option>
