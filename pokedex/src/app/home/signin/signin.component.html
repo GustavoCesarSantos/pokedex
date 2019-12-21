@@ -4,7 +4,14 @@
 
     <small *ngIf="loginForm.get('email').errors?.required"> E-mail is required </small>
 
-    <input #emailInput formControlName="email" type="text" placeholder="E-mail" autofocus>
+    <div class="form">
+
+      <input #emailInput formControlName="email" type="text" autocomplete="off" autofocus required />
+      <label class="label-input" for="email">
+        <span class="content-input"> E-mail </span>
+      </label>
+
+    </div>
 
   </div>
 
@@ -12,10 +19,23 @@
 
     <small *ngIf="loginForm.get('password').errors?.required"> Password is required </small>
 
-    <input #passwordInput formControlName="password" type="text" placeholder="Password">
+    <div class="form">
+    
+      <input #passwordInput formControlName="password" type="text" autocomplete="off" required />
+      <label class="label-input" for="password">
+        <span class="content-input"> Password </span>
+      </label>
+
+    </div>
 
   </div>
 
-  <button [disabled]="loginForm.invalid" type="submit">Login</button>
+  <div>
+
+    <button [disabled]="loginForm.invalid" type="submit">Login</button>
+  
+    <a [routerLink]="['']"> ( Home ) </a>
+
+  </div>
 
 </form>
