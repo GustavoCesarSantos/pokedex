@@ -1,7 +1,7 @@
 <header>
   <div *ngIf="(user$ | async ) as user; else login">
     <div>
-      {{ user._id }}
+      {{ user.email }}
       <a (click)="logout()">Logout</a>
     </div>
   </div>

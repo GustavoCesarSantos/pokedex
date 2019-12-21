@@ -29,7 +29,7 @@ module.exports = class LoginService{
     if(!validPass)
       throw new Error(messages.LOGIN_DEFAULT_ERROR);
     
-    const token = jwt.sign({ _id: userExist._id }, config.TOKEN_SECRET, { expiresIn: 86400 });
+    const token = jwt.sign({ _id: userExist._id, email: userExist.email }, config.TOKEN_SECRET, { expiresIn: 86400 });
     return token;
   }
 }

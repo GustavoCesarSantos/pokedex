@@ -76,7 +76,9 @@ export class CreatePokemonComponent implements OnInit{
       });
 
       selectTypes.nativeElement.selectedIndex = 0;
-    }
+    };
+
+    selectTypes.nativeElement.selectedIndex = 0;
   };
 
   addNewInputTypes(valueOfTypeSelected){

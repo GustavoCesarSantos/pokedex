@@ -37,6 +37,8 @@
   
     <div #typesPokemons class='types-pokemons'>
 
+      <label for="types">Types</label>
+
       <select #selectType (change)="addNewInputTypes($event.target.value)">
 
         <option value="">Types</option>
@@ -50,6 +52,8 @@
     
     <div #weaknessesPokemons class='weaknesses-pokemons'>
 
+      <label for="weaknesses">Weaknesses</label>
+
       <select #selectWeaknesse (change)="addNewInputWeaknesses($event.target.value)">
 
         <option value="">Weaknesses</option>
@@ -61,10 +65,14 @@
   
     </div>
 
-    <button [disabled]="createPokemonForm.invalid" (click)='createPokemon()'> Create </button>
-    
-    <a [routerLink]="['']"> ( Home ) </a>
-    
+    <div>
+
+      <button [disabled]="createPokemonForm.invalid" (click)='createPokemon()'> Create </button>
+      
+      <a [routerLink]="['']"> ( Home ) </a>
+
+    </div>
+
   </form>
 
 </section>
