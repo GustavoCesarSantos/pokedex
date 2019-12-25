@@ -20,6 +20,6 @@ module.exports = async function verifyToken(req, res, next){
       next();
     });
   }catch (err){
-    res.status(500).json({ 'ERROR': err });
+    res.status(500).json({ 'ERROR': messages.TOKEN_INVALID });
   };
 };

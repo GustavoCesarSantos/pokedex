@@ -17,5 +17,8 @@ module.exports = {
   LOGIN_DEFAULT_ERROR: 'Name or password is wrong',
 
   TOKEN_NOT_PROVIDED: 'No token provided',
-  TOKEN_INVALID: 'This token is invalid'
+  TOKEN_INVALID: 'This token is invalid',
+
+  LEVEL_NOT_PROVIDED: 'No level provided',
+  LEVEL_UNATHORIZED: `You aren't authorized for this`
 }
