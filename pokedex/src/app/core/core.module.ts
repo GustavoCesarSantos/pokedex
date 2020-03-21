@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { HeaderComponent } from './header/header.component';
 import { TokenService } from './auth/token/token.service';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LevelService } from './auth/level/level.service';
 import { RequestInterceptor } from './auth/request.interceptor';
 
 @NgModule({
@@ -20,6 +21,7 @@ import { RequestInterceptor } from './auth/request.interceptor';
   ],
   providers: [
     TokenService,
+    LevelService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: RequestInterceptor,

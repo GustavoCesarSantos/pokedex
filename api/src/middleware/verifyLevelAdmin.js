@@ -1,12 +1,15 @@
+const bcrypt = require('bcryptjs');
+
 const message = require('../helpers/constant/messages');
 
-module.exports = async function verifyLevel(req, res, next){
+module.exports = async function verifyLevelAdmin(req, res, next){
   try {
-    let level = req.headers['level'];
-    if(!level)
+    const levelHashed = req.headers['level'];
+    if(!levelHashed)
       return res.status(401).json(message.LEVEL_NOT_PROVIDED);
     
-    if(level !== 'admin')
+    const validPass = await bcrypt.compare('admin', levelHashed);
+    if(!validPass)
       return res.status(401).json(message.LEVEL_UNATHORIZED);
     
     next()

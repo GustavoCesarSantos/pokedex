@@ -34,6 +34,8 @@ module.exports = class UserService{
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(user.password, salt);
     user.password = hashedPassword;
+    const hashedLevel = await bcrypt.hash(user.level, salt);
+    user.level = hashedLevel;
     
     await userDao.setUSer(user);
   };
